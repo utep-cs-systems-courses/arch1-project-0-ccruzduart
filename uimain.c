@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include "draw.h"
 
@@ -7,7 +8,7 @@ int main()
 
   while (1) { // Infinite while loop
 
-    fputs("Select which shape you want to print (Triangle = t, Square = s, Chars = c) or 'q' to quit\n> ", stdout);
+    fputs("Select which shape you want to print (Triangle = t, Square = s, Chars at 11x16 = c, Arrow = a, NewChar at 5x7 = n, NewChar at 8x12 = x ) or 'q' to quit\n> ", stdout);
     fflush(stdout);		/* stdout only flushes automatically on \n */
     int c;
     while ((c = getchar()) == '\n'); /* ignore newlines */
@@ -29,11 +30,30 @@ int main()
       for (char c = 'A'; c < 'D'; c++)
 	print_char_11x16(c);
       break;
+
+    case 'a':
+      puts("You selected arrow");
+      print_arrow(5,5);
+      break;
+
+    case 'n':
+      puts("You have selected new chars");
+      for(char c = 'A'; c < 'D'; c++)
+	print_char_5x7(c);
+      break;
+
+    case 'x':
+      puts("You have selected chars at 8x12");
+      for(char c = 'A'; c < 'D'; c++)
+	print_char_8x12(c);
+      break;
     case 'q':
       puts("Bye!");
       goto done; 		/* terminate */
+
     case '\n':
       break;
+	   
     default:
       printf("Unrecognized option '%c', please try again!\n", c);
     }
